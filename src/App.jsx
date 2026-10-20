@@ -42,14 +42,19 @@ function App() {
       {/*  */}
       <div className='fixed bottom-0 left-0 right-0'>
         <nav className='flex items-center justify-between p-1 text-[#434654] font-inter relative shadow-[0px_-3px_16px_0px_#0E1C310F] bg-white'>
-          <div className='flex flex-col items-center justify-center w-14 h-14'>
-            <FaRegCompass className='w-5 h-5' />
-            <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'><Link to="/">Home</Link></h1>
-          </div>
-          <div className='flex flex-col items-center justify-center w-14 h-14'>
-            <FaRegMap className='w-5 h-5' />
-            <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'> <Link to="/explore">Explore</Link></h1>
-          </div>
+          <Link to="/">
+            <div className='flex flex-col items-center justify-center w-14 h-14'>
+              <FaRegCompass className='w-5 h-5' />
+              <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'>Home</h1>
+            </div>
+          </Link>
+          <Link to="/explore">
+            <div className='flex flex-col items-center justify-center w-14 h-14'>
+              <FaRegMap className='w-5 h-5' />
+              <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'>Explore</h1>
+            </div>
+          </Link>
+
           <div className='relative -top-2'>
             <div className='flex flex-col items-center justify-center w-14 h-14'>
               <div className='w-12 h-9 bg-[#4169E1] rounded-full flex items-center justify-center'>
@@ -58,10 +63,14 @@ function App() {
               <h1 className='mt-1 text-xs font-semibold tracking-[0.36px]'>Build</h1>
             </div>
           </div>
-          <div className='flex flex-col items-center justify-center w-14 h-14'>
-            <FaRegBookmark className='w-5 h-5' />
-            <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'><Link to="/saved">Saved</Link></h1>
-          </div>
+
+          <Link to="/saved">
+            <div className='flex flex-col items-center justify-center w-14 h-14'>
+              <FaRegBookmark className='w-5 h-5' />
+              <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'>Saved</h1>
+            </div>
+          </Link>
+
           <div className='flex flex-col items-center justify-center w-14 h-14'>
             <CgProfile className='w-5 h-5' />
             <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'>Profile</h1>

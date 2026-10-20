@@ -8,6 +8,10 @@ import { GoPlusCircle } from "react-icons/go";
 import { IoMdArrowForward } from "react-icons/io";
 import { MdRadar } from "react-icons/md";
 import { IoCarOutline } from "react-icons/io5";
+import { FiPlus } from "react-icons/fi";
+import { FaStar } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
+import { CiLocationArrow1 } from "react-icons/ci";
 
 function Home() {
   return (
@@ -132,6 +136,222 @@ function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      {/*  */}
+      <section className="pt-6">
+        <div className="grid gap-3 px-5">
+          <div className="flex justify-between">
+            <div>
+              <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">Trending in Lagos</h1>
+              <p className="text-xs text-[#434654]">Top-saved by locals this week</p>
+            </div>
+            <div>
+              <span className="text-[#214FC7] font-semibold tracking-[0.36px] text-xs">Verified Only</span>
+            </div>
+          </div>
+          {/*  */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_88px_24px_0px_#0E1C31]/6">
+            <div className="relative w-full h-44">
+              {/* Background image */}
+              <img
+                src="/lagosly/src/assets/images.jpeg"
+                alt="Victoria Island"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
+
+              {/* Top section: Rating, location badge and bookmark */}
+              <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+
+                <div className="flex items-center gap-1.5">
+                  {/* Rating */}
+                  <div className="flex items-center gap-1.5 bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <FaStar className="text-[#00655B] w-3 h-3" />
+                    <span className="text-xs font-bold text-[#00655B] tracking-[0.36px]">4.8</span>
+                  </div>
+
+                  {/* Area */}
+                  <div className="bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <span className="flex text-xs font-bold text-[#0E1C31] tracking-[0.66px]">
+                      VICTORIA ISLAND
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bookmark */}
+                <button className="w-9 h-9 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
+                  <FaRegBookmark className="text-[#0E1C31]" />
+                </button>
+
+              </div>
+
+              {/* Bottom section: Distance and travel time */}
+              <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
+                <CiLocationArrow1 className="text-[#DCE1FF] w-4 h-4" />
+                <span className="text-xs font-medium text-white">
+                  2.1 km away · 8 min drive
+                </span>
+              </div>
+
+            </div>
+            <div className="p-3.5 grid gap-2">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">NOK by Alara</h1>
+                  <p className="text-xs text-[#434654]">Contemporary African Fine Dining ·Garden Lounge</p>
+                </div>
+                <div className="bg-[#DFE8FF] px-2 py-1 rounded-lg">
+                  <span className="text-xs font-semibold">₦28,000<span className="text-xs font-normal">/pp</span></span>
+                </div>
+              </div>
+
+              <div className="mt-1 pt-2 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#00655B]"></div>
+                  <h4 className="font-medium text-xs text-[#00655B]">Tables free for 7:30 PM</h4>
+                </div>
+                <div><button className="px-3.5 py-1.5 bg-[#4169E1] rounded-full shadow-[0px_1px_2px_0px_#000000]/5 flex items-center gap-1 text-white"><FiPlus className=" w-3 h-3" /><span className="text-xs font-semibold tracking-[0.36px]">Add to Plan</span></button></div>
+              </div>
+            </div>
+          </div>
+          {/*  */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_88px_24px_0px_#0E1C31]/6">
+            <div className="relative w-full h-44">
+              {/* Background image */}
+              <img
+                src="/lagosly/src/assets/images.jpeg"
+                alt="Victoria Island"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
+
+              {/* Top section: Rating, location badge and bookmark */}
+              <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+
+                <div className="flex items-center gap-1.5">
+                  {/* Rating */}
+                  <div className="flex items-center gap-1.5 bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <FaStar className="text-[#00655B] w-3 h-3" />
+                    <span className="text-xs font-bold text-[#00655B] tracking-[0.36px]">4.8</span>
+                  </div>
+
+                  {/* Area */}
+                  <div className="bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <span className="flex text-xs font-bold text-[#0E1C31] tracking-[0.66px]">
+                      VICTORIA ISLAND
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bookmark */}
+                <button className="w-9 h-9 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
+                  <FaRegBookmark className="text-[#0E1C31]" />
+                </button>
+
+              </div>
+
+              {/* Bottom section: Distance and travel time */}
+              <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
+                <CiLocationArrow1 className="text-[#DCE1FF] w-4 h-4" />
+                <span className="text-xs font-medium text-white">
+                  2.1 km away · 8 min drive
+                </span>
+              </div>
+
+            </div>
+            <div className="p-3.5 grid gap-2">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">NOK by Alara</h1>
+                  <p className="text-xs text-[#434654]">Contemporary African Fine Dining ·Garden Lounge</p>
+                </div>
+                <div className="bg-[#DFE8FF] px-2 py-1 rounded-lg">
+                  <span className="text-xs font-semibold">₦28,000<span className="text-xs font-normal">/pp</span></span>
+                </div>
+              </div>
+
+              <div className="mt-1 pt-2 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#00655B]"></div>
+                  <h4 className="font-medium text-xs text-[#00655B]">Tables free for 7:30 PM</h4>
+                </div>
+                <div><button className="px-3.5 py-1.5 bg-[#4169E1] rounded-full shadow-[0px_1px_2px_0px_#000000]/5 flex items-center gap-1 text-white"><FiPlus className=" w-3 h-3" /><span className="text-xs font-semibold tracking-[0.36px]">Add to Plan</span></button></div>
+              </div>
+            </div>
+          </div>
+          {/*  */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_88px_24px_0px_#0E1C31]/6">
+            <div className="relative w-full h-44">
+              {/* Background image */}
+              <img
+                src="/lagosly/src/assets/images.jpeg"
+                alt="Victoria Island"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
+
+              {/* Top section: Rating, location badge and bookmark */}
+              <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+
+                <div className="flex items-center gap-1.5">
+                  {/* Rating */}
+                  <div className="flex items-center gap-1.5 bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <FaStar className="text-[#00655B] w-3 h-3" />
+                    <span className="text-xs font-bold text-[#00655B] tracking-[0.36px]">4.8</span>
+                  </div>
+
+                  {/* Area */}
+                  <div className="bg-white/90 rounded-full px-2.5 py-1 shadow-sm">
+                    <span className="flex text-xs font-bold text-[#0E1C31] tracking-[0.66px]">
+                      VICTORIA ISLAND
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bookmark */}
+                <button className="w-9 h-9 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
+                  <FaRegBookmark className="text-[#0E1C31]" />
+                </button>
+
+              </div>
+
+              {/* Bottom section: Distance and travel time */}
+              <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
+                <CiLocationArrow1 className="text-[#DCE1FF] w-4 h-4" />
+                <span className="text-xs font-medium text-white">
+                  2.1 km away · 8 min drive
+                </span>
+              </div>
+
+            </div>
+            <div className="p-3.5 grid gap-2">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">NOK by Alara</h1>
+                  <p className="text-xs text-[#434654]">Contemporary African Fine Dining ·Garden Lounge</p>
+                </div>
+                <div className="bg-[#DFE8FF] px-2 py-1 rounded-lg">
+                  <span className="text-xs font-semibold">₦28,000<span className="text-xs font-normal">/pp</span></span>
+                </div>
+              </div>
+
+              <div className="mt-1 pt-2 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#00655B]"></div>
+                  <h4 className="font-medium text-xs text-[#00655B]">Tables free for 7:30 PM</h4>
+                </div>
+                <div><button className="px-3.5 py-1.5 bg-[#4169E1] rounded-full shadow-[0px_1px_2px_0px_#000000]/5 flex items-center gap-1 text-white"><FiPlus className=" w-3 h-3" /><span className="text-xs font-semibold tracking-[0.36px]">Add to Plan</span></button></div>
+              </div>
+            </div>
+          </div>
+          {/*  */}
         </div>
       </section>
       {/*  */}
