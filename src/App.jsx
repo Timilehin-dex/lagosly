@@ -14,7 +14,7 @@ import Saved from './Saved'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/lagosly">
       {/*  */}
       <div className='fixed top-0 left-0 right-0'>
         <header className='flex items-center justify-between px-5 py-3 shadow-[0px_1px_10px_0px_#0E1C310F] bg-white'>
