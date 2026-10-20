@@ -32,7 +32,7 @@ function App() {
         </header>
       </div>
       {/*  */}
-      <div className='pt-20'>
+      <div className='py-20'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
@@ -41,7 +41,7 @@ function App() {
       </div>
       {/*  */}
       <div className='fixed bottom-0 left-0 right-0'>
-        <nav className='flex items-center justify-between p-1 text-[#434654] font-inter relative shadow-[0px_-3px_16px_0px_#0E1C310F]'>
+        <nav className='flex items-center justify-between p-1 text-[#434654] font-inter relative shadow-[0px_-3px_16px_0px_#0E1C310F] bg-white'>
           <div className='flex flex-col items-center justify-center w-14 h-14'>
             <FaRegCompass className='w-5 h-5' />
             <h1 className='mt-0.5 text-xs font-semibold tracking-[0.36px]'><Link to="/">Home</Link></h1>
