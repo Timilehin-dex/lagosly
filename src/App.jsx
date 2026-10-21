@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter basename="/lagosly">
       {/*  */}
-      <div className='fixed top-0 left-0 right-0'>
+      <div className='fixed top-0 left-0 right-0 z-50'>
         <header className='flex items-center justify-between px-5 py-3 shadow-[0px_1px_10px_0px_#0E1C310F] bg-white'>
           <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1'>
@@ -40,7 +40,7 @@ function App() {
         </Routes>
       </div>
       {/*  */}
-      <div className='fixed bottom-0 left-0 right-0'>
+      <div className='fixed bottom-0 left-0 right-0 z-50'>
         <nav className='flex items-center justify-between p-1 text-[#434654] font-inter relative shadow-[0px_-3px_16px_0px_#0E1C310F] bg-white'>
           <Link to="/">
             <div className='flex flex-col items-center justify-center w-14 h-14'>
