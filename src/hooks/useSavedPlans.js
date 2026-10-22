@@ -17,5 +17,12 @@ export default function useSavedPlans(showToast) {
     showToast(isPlanned ? `${venue.name} removed from your plan` : `${venue.name} added to your plan`)
   }
 
-  return { saved, planned, toggleSaved, togglePlanned }
+  // add several venues to the plan at once; returns how many were new
+  const addToPlan = (venueList) => {
+    const fresh = venueList.filter((venue) => !planned.includes(venue.id))
+    if (fresh.length > 0) setPlanned([...planned, ...fresh.map((venue) => venue.id)])
+    return fresh.length
+  }
+
+  return { saved, planned, toggleSaved, togglePlanned, addToPlan }
 }

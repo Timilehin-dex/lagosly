@@ -1,8 +1,15 @@
+import { Link } from 'react-router-dom'
 import { FaStar, FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { SlLocationPin } from 'react-icons/sl'
 import { FiPlus } from 'react-icons/fi'
 import { IoCheckmark } from 'react-icons/io5'
+import SmartImage from './SmartImage'
 import { formatNaira } from '../data/venues'
+
+// Stretched link: the title link covers the whole card, so tapping anywhere opens
+// the venue. Buttons inside the card sit above it with `relative z-10`.
+const cardLink =
+  "after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-[#4169E1]"
 
 function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
   const NoteIcon = venue.noteIcon
@@ -10,13 +17,13 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
   return (
     <article
       id={`venue-${venue.id}`}
-      className={`group overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-xl ${
+      className={`group relative overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-xl ${
         highlighted ? 'ring-2 ring-[#4169E1]' : ''
       }`}
     >
       {/* Photo */}
       <div className="relative h-48 overflow-hidden">
-        <img
+        <SmartImage
           src={venue.image}
           alt={`${venue.name} venue`}
           className="h-full w-full object-cover object-[center_46%] transition duration-500 group-hover:scale-105"
@@ -44,7 +51,7 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
           aria-pressed={saved}
           aria-label={`${saved ? 'Remove' : 'Save'} ${venue.name} ${saved ? 'from' : 'to'} saved`}
           onClick={onSave}
-          className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full shadow-sm backdrop-blur-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4169E1] ${
+          className={`absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full shadow-sm backdrop-blur-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4169E1] ${
             saved
               ? 'bg-[#DFE8FF] text-[#214FC7] ring-2 ring-inset ring-[#4169E1]'
               : 'bg-white/90 text-[#0E1C31]'
@@ -67,7 +74,9 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
         <div className="flex items-start justify-between gap-2.5">
           <div className="min-w-0">
             <h3 className="truncate font-jakarta text-[22px] font-bold leading-7 tracking-[-0.33px] text-[#0E1C31]">
-              {venue.name}
+              <Link to={`/venue/${venue.id}`} className={cardLink}>
+                {venue.name}
+              </Link>
             </h3>
             <p className="flex items-center gap-1 text-[13px] leading-5 text-[#434654]">
               <SlLocationPin className="h-3 w-3 shrink-0" />
@@ -75,9 +84,11 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
             </p>
           </div>
           <div className="flex shrink-0 flex-col items-end pt-px">
-            <span className="text-xs font-semibold tracking-[0.36px] text-[#747685]">Avg for two</span>
+            <span className="text-xs font-semibold tracking-[0.36px] text-[#747685]">
+              {venue.price === 0 ? 'Entry' : 'Avg for two'}
+            </span>
             <strong className="text-[17px] font-bold leading-6 tracking-[-0.17px] text-[#0E1C31]">
-              {formatNaira(venue.price)}
+              {venue.price === 0 ? 'Free' : formatNaira(venue.price)}
             </strong>
           </div>
         </div>
@@ -105,7 +116,7 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
             type="button"
             aria-pressed={planned}
             onClick={onPlan}
-            className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4169E1] ${
+            className={`relative z-10 flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4169E1] ${
               planned
                 ? 'bg-[#DFF7F0] text-[#00655B] hover:bg-[#cdf0e6]'
                 : 'bg-[#4169E1] text-white hover:bg-[#3257c8]'

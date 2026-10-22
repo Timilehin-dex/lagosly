@@ -12,6 +12,7 @@ import { FaStar, FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { CiLocationArrow1 } from 'react-icons/ci'
 
 import Toast from './components/Toast'
+import SmartImage from './components/SmartImage'
 import useToast from './hooks/useToast'
 import useSavedPlans from './hooks/useSavedPlans'
 import { venues, vibes, advancedFilters, filterVenues, sortVenues, formatNaira, ALL_TYPES } from './data/venues'
@@ -38,6 +39,11 @@ const guides = [1, 2].map((id) => ({
 
 const focusRing =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4169E1]'
+
+// Stretched link: the title link covers the whole card, so tapping anywhere opens
+// the venue. Buttons inside the card sit above it with `relative z-10`.
+const cardLink =
+  "after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-[#4169E1]"
 
 function Home() {
   // ---- filters ----
@@ -254,10 +260,10 @@ function Home() {
             return (
               <div
                 key={venue.id}
-                className="group bg-white rounded-2xl overflow-hidden shadow-[0px_88px_24px_0px_#0E1C31]/6 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-[0px_88px_24px_0px_#0E1C31]/6 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <div className="relative w-full h-44 overflow-hidden">
-                  <img
+                  <SmartImage
                     src={venue.image}
                     alt={venue.name}
                     className="absolute inset-0 w-full h-full object-cover object-[center_46%] transition duration-500 group-hover:scale-105"
@@ -283,7 +289,7 @@ function Home() {
                       aria-pressed={isSaved}
                       aria-label={`${isSaved ? 'Remove' : 'Save'} ${venue.name} ${isSaved ? 'from' : 'to'} saved`}
                       onClick={() => toggleSaved(venue)}
-                      className={`w-9 h-9 rounded-full shadow-sm flex items-center justify-center transition hover:bg-white ${focusRing} ${
+                      className={`relative z-10 w-9 h-9 rounded-full shadow-sm flex items-center justify-center transition hover:bg-white ${focusRing} ${
                         isSaved
                           ? 'bg-[#DFE8FF] text-[#214FC7] ring-2 ring-inset ring-[#4169E1]'
                           : 'bg-white/90 text-[#0E1C31]'
@@ -304,13 +310,17 @@ function Home() {
                 <div className="p-3.5 grid gap-2">
                   <div className="flex justify-between items-start gap-2">
                     <div className="min-w-0">
-                      <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">{venue.name}</h1>
+                      <h1 className="font-bold tracking-[-0.17px] text-[#0E1C31]">
+                        <Link to={`/venue/${venue.id}`} className={cardLink}>
+                          {venue.name}
+                        </Link>
+                      </h1>
                       <p className="text-xs text-[#434654]">{venue.type} · {venue.tags[0]}</p>
                     </div>
                     <div className="shrink-0 bg-[#DFE8FF] px-2 py-1 rounded-lg">
                       <span className="text-xs font-semibold">
-                        {formatNaira(Math.round(venue.price / 2))}
-                        <span className="text-xs font-normal">/pp</span>
+                        {venue.price === 0 ? 'Free' : formatNaira(Math.round(venue.price / 2))}
+                        {venue.price !== 0 && <span className="text-xs font-normal">/pp</span>}
                       </span>
                     </div>
                   </div>
@@ -325,7 +335,7 @@ function Home() {
                         type="button"
                         aria-pressed={isPlanned}
                         onClick={() => togglePlanned(venue)}
-                        className={`px-3.5 py-1.5 rounded-full shadow-[0px_1px_2px_0px_#000000]/5 flex items-center gap-1 transition ${focusRing} ${
+                        className={`relative z-10 px-3.5 py-1.5 rounded-full shadow-[0px_1px_2px_0px_#000000]/5 flex items-center gap-1 transition ${focusRing} ${
                           isPlanned
                             ? 'bg-[#DFF7F0] text-[#00655B] hover:bg-[#cdf0e6]'
                             : 'bg-[#4169E1] text-white hover:bg-[#3257c8]'
