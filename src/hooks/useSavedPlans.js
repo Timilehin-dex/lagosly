@@ -1,6 +1,7 @@
 import useLocalStorage from './useLocalStorage'
 
-// Saved + "Add to Plan" lists, shared by Home and Explore (same localStorage keys).
+// Saved venues + the "Add to Plan" queue, shared by Home, Explore and Saved
+// (same localStorage keys everywhere).
 export default function useSavedPlans(showToast) {
   const [saved, setSaved] = useLocalStorage('lagosly:saved', [])
   const [planned, setPlanned] = useLocalStorage('lagosly:planned', [])
@@ -17,12 +18,8 @@ export default function useSavedPlans(showToast) {
     showToast(isPlanned ? `${venue.name} removed from your plan` : `${venue.name} added to your plan`)
   }
 
-  // add several venues to the plan at once; returns how many were new
-  const addToPlan = (venueList) => {
-    const fresh = venueList.filter((venue) => !planned.includes(venue.id))
-    if (fresh.length > 0) setPlanned([...planned, ...fresh.map((venue) => venue.id)])
-    return fresh.length
-  }
+  // empty the "Add to Plan" queue (used after it has been turned into a draft plan)
+  const clearPlanned = () => setPlanned([])
 
-  return { saved, planned, toggleSaved, togglePlanned, addToPlan }
+  return { saved, planned, toggleSaved, togglePlanned, clearPlanned }
 }

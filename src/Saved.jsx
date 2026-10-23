@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 import {
   MdOutlineLocalActivity,
@@ -25,6 +25,7 @@ import Toast from './components/Toast'
 import SmartImage from './components/SmartImage'
 import useToast from './hooks/useToast'
 import useSavedPlans from './hooks/useSavedPlans'
+import usePlans from './hooks/usePlans'
 import {
   venues,
   boards,
@@ -61,7 +62,9 @@ function Saved() {
 
   // ---- saved / planned (same lists as Home and Explore) ----
   const [message, showToast] = useToast()
-  const { saved, planned, toggleSaved, togglePlanned, addToPlan } = useSavedPlans(showToast)
+  const { saved, planned, toggleSaved, togglePlanned } = useSavedPlans(showToast)
+  const { createDraft } = usePlans()
+  const navigate = useNavigate()
 
   // ---- export button ----
   const [copied, setCopied] = useState(false)
@@ -144,13 +147,11 @@ function Saved() {
           .map((venue) => venue.name)
           .join(', ') + (selectedCount > 3 ? ` +${selectedCount - 3} more` : '')
 
+  // turn the selected venues into a draft plan and open the Build page
   const buildPlan = () => {
-    const added = addToPlan(selectedVenues)
-    showToast(
-      added > 0
-        ? `${plural(added, 'spot')} added to your plan`
-        : 'Those spots are already in your plan',
-    )
+    createDraft(selectedVenues)
+    setSelected([])
+    navigate('/build', { state: { tab: 'draft' } })
   }
 
   const unsave = (venue) => {

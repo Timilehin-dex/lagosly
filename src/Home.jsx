@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SlLocationPin } from 'react-icons/sl'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 import { IoSearchOutline, IoFilter, IoClose, IoCheckmark, IoCarOutline } from 'react-icons/io5'
@@ -15,6 +15,7 @@ import Toast from './components/Toast'
 import SmartImage from './components/SmartImage'
 import useToast from './hooks/useToast'
 import useSavedPlans from './hooks/useSavedPlans'
+import usePlans from './hooks/usePlans'
 import { venues, vibes, advancedFilters, filterVenues, sortVenues, formatNaira, ALL_TYPES } from './data/venues'
 
 const MAX_TRENDING = 3
@@ -55,7 +56,9 @@ function Home() {
 
   // ---- saved / planned (same lists as the Explore page) ----
   const [message, showToast] = useToast()
-  const { saved, planned, toggleSaved, togglePlanned } = useSavedPlans(showToast)
+  const { saved, planned, toggleSaved, togglePlanned, clearPlanned } = useSavedPlans(showToast)
+  const { createDraft } = usePlans()
+  const navigate = useNavigate()
 
   const category = vibes.find((item) => item.label === vibe)?.category ?? ALL_TYPES
 
@@ -79,6 +82,18 @@ function Home() {
     setAdvanced((current) =>
       current.includes(key) ? current.filter((k) => k !== key) : [...current, key],
     )
+
+  // turn the Add to Plan queue into a draft plan and open the Build page
+  const startItinerary = () => {
+    const queued = planned.map((id) => venues.find((venue) => venue.id === id)).filter(Boolean)
+    if (queued.length === 0) {
+      showToast('Add a few spots to your plan first')
+      return
+    }
+    createDraft(queued)
+    clearPlanned()
+    navigate('/build', { state: { tab: 'draft' } })
+  }
 
   const toggleVerified = () => {
     showToast(verifiedOnly ? 'Showing all spots' : 'Showing verified spots only')
@@ -499,13 +514,7 @@ function Home() {
             <div className="pt-2">
               <button
                 type="button"
-                onClick={() =>
-                  showToast(
-                    planned.length
-                      ? `${planned.length} spot${planned.length === 1 ? '' : 's'} ready for your itinerary`
-                      : 'Add a few spots to your plan first',
-                  )
-                }
+                onClick={startItinerary}
                 className={`px-4 py-3 rounded-full bg-white flex items-center justify-center gap-2 w-full text-[#214FC7] font-bold transition hover:bg-[#F0F3FF] ${focusRing}`}
               >
                 <GoPlusCircle className="w-4 h-4" />
