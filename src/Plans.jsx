@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 import {
   MdAdd,
@@ -55,6 +55,7 @@ function StatCard({ label, icon: Icon, iconClass, value, note, noteClass = 'text
 
 function Plans() {
   const location = useLocation()
+  const navigate = useNavigate()
   const [now] = useState(() => new Date())
 
   const [tab, setTab] = useState(location.state?.tab ?? 'upcoming')
@@ -248,7 +249,7 @@ function Plans() {
           <PlanHero
             plan={hero}
             now={now}
-            onOpen={comingSoon('The itinerary editor is coming soon')}
+            onOpen={() => navigate(`/build/${hero.id}`)}
             onShare={comingSoon('Share links are coming soon')}
           />
         )}
@@ -269,9 +270,7 @@ function Plans() {
                   plan={plan}
                   status={tab}
                   now={now}
-                  onOpen={comingSoon(
-                    tab === 'draft' ? 'The plan builder is coming soon' : 'The itinerary editor is coming soon',
-                  )}
+                  onOpen={() => navigate(`/build/${plan.id}`)}
                   onArchive={() => {
                     archivePlan(plan.id)
                     showToast('Plan archived')

@@ -13,6 +13,7 @@ import {
   joinAreas,
   perPerson,
   planAreas,
+  planBreakdown,
   planStops,
   planTotal,
   timeSpanLabel,
@@ -28,6 +29,7 @@ function PlanHero({ plan, now, onOpen, onShare }) {
   const shown = stops.slice(0, 4)
   const total = planTotal(plan)
   const each = perPerson(plan)
+  const breakdown = planBreakdown(plan)
   const span = timeSpanLabel(stops)
   const areas = joinAreas(planAreas([plan]))
   const guestDots = Math.min(plan.guests ?? 0, 3)
@@ -112,16 +114,16 @@ function PlanHero({ plan, now, onOpen, onShare }) {
             )}
           </div>
 
-          {plan.breakdown && total > 0 && (
+          {breakdown && total > 0 && (
             <div className="mb-2.5 flex h-2 w-full gap-0.5 overflow-hidden rounded-full bg-[#E8EEFF]">
-              {plan.breakdown.map((item, index) => (
+              {breakdown.map((item, index) => (
                 <div
                   key={item.label}
                   className="h-full"
                   title={`${item.label}: ${formatNaira(item.amount)}`}
                   style={{
                     width: `${(item.amount / total) * 100}%`,
-                    backgroundColor: budgetColors[index % budgetColors.length],
+                    backgroundColor: item.color ?? budgetColors[index % budgetColors.length],
                   }}
                 />
               ))}

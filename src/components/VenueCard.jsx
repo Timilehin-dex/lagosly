@@ -11,22 +11,28 @@ import { formatNaira } from '../data/venues'
 const cardLink =
   "after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-[#4169E1]"
 
-function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
+// horizontal: on desktop (lg+) the photo sits beside the details, used by Explore's split view.
+// Phones and tablets always show the stacked card.
+function VenueCard({ venue, saved, planned, highlighted, horizontal = false, onSave, onPlan }) {
   const NoteIcon = venue.noteIcon
 
   return (
     <article
       id={`venue-${venue.id}`}
       className={`group relative overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-xl ${
-        highlighted ? 'ring-2 ring-[#4169E1]' : ''
-      }`}
+        horizontal ? 'lg:flex lg:gap-4 lg:p-4' : ''
+      } ${highlighted ? 'ring-2 ring-[#4169E1]' : ''}`}
     >
       {/* Photo */}
-      <div className="relative h-48 overflow-hidden">
+      <div
+        className={`relative h-48 overflow-hidden ${
+          horizontal ? 'lg:h-auto lg:min-h-48 lg:w-56 lg:shrink-0 lg:rounded-xl' : ''
+        }`}
+      >
         <SmartImage
           src={venue.image}
           alt={`${venue.name} venue`}
-          className="h-full w-full object-cover object-[center_46%] transition duration-500 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover object-[center_46%] transition duration-500 group-hover:scale-105"
         />
 
         <div className="absolute left-3 top-3 flex max-w-[calc(100%-65px)] gap-1.5">
@@ -70,7 +76,11 @@ function VenueCard({ venue, saved, planned, highlighted, onSave, onPlan }) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-3 p-4">
+      <div
+        className={`flex flex-col gap-3 p-4 ${
+          horizontal ? 'lg:min-w-0 lg:flex-1 lg:justify-between lg:p-0 lg:py-1' : ''
+        }`}
+      >
         <div className="flex items-start justify-between gap-2.5">
           <div className="min-w-0">
             <h3 className="truncate font-jakarta text-[22px] font-bold leading-7 tracking-[-0.33px] text-[#0E1C31]">

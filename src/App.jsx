@@ -3,8 +3,19 @@ import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { CgProfile } from "react-icons/cg"
-import { FaRegBookmark, FaBookmark, FaRegCompass, FaCompass, FaRegMoneyBillAlt } from "react-icons/fa"
-import { FaPlus, FaRegMap, FaMap, FaRegBell } from "react-icons/fa6"
+import {
+  FaRegBookmark,
+  FaBookmark,
+  FaRegCompass,
+  FaCompass,
+  FaRegMoneyBillAlt,
+} from "react-icons/fa"
+import {
+  FaPlus,
+  FaRegMap,
+  FaMap,
+  FaRegBell,
+} from "react-icons/fa6"
 import { RxAvatar } from "react-icons/rx"
 import { TbLocation } from "react-icons/tb"
 
@@ -13,8 +24,8 @@ import Explore from './Explore'
 import Saved from './Saved'
 import VenueDetail from './VenueDetail'
 import Plans from './Plans'
+import PlanEditor from './PlanEditor'
 
-// Active styles for mobile navigation
 const tabClass = ({ isActive }) =>
   `flex flex-col items-center justify-center w-14 h-14 rounded-2xl transition ${
     isActive
@@ -26,7 +37,7 @@ function App() {
   return (
     <BrowserRouter basename="/lagosly">
 
-      {/* HEADER: Shared mobile and desktop */}
+      {/* HEADER */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <header className="flex items-center justify-between px-5 lg:px-12 py-3 shadow-[0px_1px_10px_0px_#0E1C310F] bg-white">
 
@@ -48,62 +59,69 @@ function App() {
             </button>
           </div>
 
-          {/* Desktop navigation */}
-          <div className="hidden lg:block rounded-full bg-[#F0F3FF] shadow-[0px_2px_10px_0px_#0E1C310F]">
+          {/* DESKTOP NAVIGATION */}
+          <nav className="hidden lg:block rounded-full bg-[#F0F3FF] shadow-[0px_2px_10px_0px_#0E1C310F]">
             <ul className="text-[#434654] flex items-center justify-between gap-1 p-1">
 
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) =>
-                  `px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
-                    isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
-                  }`
-                }
-              >
-                <li>Home</li>
-              </NavLink>
+              <li>
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) =>
+                    `block px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
+                      isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
+                    }`
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
 
-              <NavLink
-                to="/explore"
-                className={({ isActive }) =>
-                  `px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
-                    isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
-                  }`
-                }
-              >
-                <li>Explore</li>
-              </NavLink>
+              <li>
+                <NavLink
+                  to="/explore"
+                  className={({ isActive }) =>
+                    `block px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
+                      isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
+                    }`
+                  }
+                >
+                  Explore
+                </NavLink>
+              </li>
 
-              <NavLink
-                to="/build"
-                className={({ isActive }) =>
-                  `px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
-                    isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
-                  }`
-                }
-              >
-                <li>My Plans</li>
-              </NavLink>
+              <li>
+                <NavLink
+                  to="/build"
+                  className={({ isActive }) =>
+                    `block px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
+                      isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
+                    }`
+                  }
+                >
+                  My Plans
+                </NavLink>
+              </li>
 
-              <NavLink
-                to="/saved"
-                className={({ isActive }) =>
-                  `px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
-                    isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
-                  }`
-                }
-              >
-                <li>Saved Places</li>
-              </NavLink>
+              <li>
+                <NavLink
+                  to="/saved"
+                  className={({ isActive }) =>
+                    `block px-4 py-1.5 font-medium text-sm tracking-[0.14px] rounded-full transition ${
+                      isActive ? 'bg-white text-[#214FC7] shadow-sm' : ''
+                    }`
+                  }
+                >
+                  Saved Places
+                </NavLink>
+              </li>
 
             </ul>
-          </div>
+          </nav>
 
-          {/* Header actions */}
+          {/* HEADER ACTIONS */}
           <div className="flex items-center justify-between gap-1 lg:gap-2">
 
-            {/* Desktop Build a Plan button */}
             <NavLink
               to="/build"
               className="hidden bg-[#4169E1] px-6 py-2.5 rounded-full lg:flex items-center gap-2 text-[#F8F7FF] shadow-[0px_6px_20px_0px_#4169E1]/24 hover:bg-[#3257c8] transition"
@@ -132,13 +150,14 @@ function App() {
         </header>
       </div>
 
-      {/* PAGE CONTENT */}
+      {/* PAGE ROUTES */}
       <main className="pt-20 pb-20 lg:pb-0">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/build" element={<Plans />} />
+          <Route path="/build/:planId" element={<PlanEditor />} />
           <Route path="/venue/:id" element={<VenueDetail />} />
         </Routes>
       </main>
@@ -175,7 +194,7 @@ function App() {
             )}
           </NavLink>
 
-          {/* Build button */}
+          {/* BUILD */}
           <NavLink to="/build" className="relative -top-2">
             {({ isActive }) => (
               <div className="flex flex-col items-center justify-center w-14 h-14">
@@ -188,6 +207,7 @@ function App() {
                 >
                   <FaPlus className="text-white w-5 h-5" />
                 </div>
+
                 <span
                   className={`mt-1 text-xs font-semibold tracking-[0.36px] ${
                     isActive ? 'text-[#214FC7]' : ''
@@ -213,7 +233,6 @@ function App() {
             )}
           </NavLink>
 
-          {/* Profile */}
           <button className="flex flex-col items-center justify-center w-14 h-14 rounded-2xl hover:bg-[#F0F3FF]">
             <CgProfile className="w-5 h-5" />
             <span className="mt-0.5 text-xs font-semibold tracking-[0.36px]">
@@ -227,10 +246,9 @@ function App() {
       {/* DESKTOP FOOTER */}
       <footer className="bg-[#F0F3FF] hidden lg:block">
         <div className="px-12 py-16">
-
           <div className="grid grid-cols-12 gap-10 pb-10">
 
-            {/* Brand information */}
+            {/* BRAND */}
             <div className="col-span-4 grid content-start gap-4">
               <h2 className="text-xl font-jakarta font-bold tracking-[-0.5px] text-[#0E1C31] pb-2">
                 Lagosly
@@ -249,7 +267,7 @@ function App() {
               </div>
             </div>
 
-            {/* Neighborhoods */}
+            {/* NEIGHBORHOODS */}
             <div className="col-span-3 grid content-start gap-2">
               <h3 className="font-semibold tracking-[-0.17px] text-[#0E1C31]">
                 Neighborhoods
@@ -264,7 +282,7 @@ function App() {
               </ul>
             </div>
 
-            {/* Curation and tools */}
+            {/* CURATION AND TOOLS */}
             <div className="col-span-3 grid content-start gap-2">
               <h3 className="font-semibold tracking-[-0.17px] text-[#0E1C31]">
                 Curation &amp; Tools
@@ -282,7 +300,6 @@ function App() {
             <div className="col-span-2" />
 
           </div>
-
         </div>
       </footer>
 

@@ -54,6 +54,13 @@ body {
   animation: fade-up 0.2s ease-out;
 }
 
+/* PDF button: print the page without the fixed header, tab bar and action bar */
+@media print {
+  .fixed {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

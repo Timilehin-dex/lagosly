@@ -40,14 +40,17 @@ const nokPhotos = [
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDH3AOcakrtLtYG9Es9VvFzVjW_vnirS-MRaOseUWgCGZU6e_PBCVbLVsTTUmKqRyjObbNNrZ8XG9AOASZ8hpRyTBtI-YMs1Tzi4m03bQVfNC8XOPJZ2itST-OuNdmwGckHmnTaRk7uKeDNL6tlP7WMXDoeorM_I3zH1oQoqfnJ9dkMXxRrSGECj6WZNGCjzHI620WhX4uAx-v-CzLPUwoZgRmYix0tDdTQ-lmr558lwiP3NhqiKcz4',
     alt: 'Bamboo pavilion dining room at NOK by Alara with warm pendant lighting',
+    caption: 'Courtyard & Bamboo Pavilion',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBprYQ67KQryKqmgiEeN1Mp89G3aocJaPmmt4TprJvN_b2gf1P3-1N5-r_0oHc1kh26NZKMZu6peKlQs_2u4b9qmj8urKtzw4QcOP1mOrs3pjDNVFcg1bLseXdN1bSUpMxD2f7eH9bGfpy_QiyCrjviUPNnSB8Tfnm0bsUR2tvdJ-6wZR0stNbuJgyhJAme6K58CW9sndQGlAqB_QQ8_lwcab9wYAWN2tN4_Zbd41nHE8VwO2tl_nzt',
     alt: 'Plated smoked jollof rice with braised goat shank',
+    caption: 'Signature Gastronomy',
   },
   {
     src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4L1Bq15OSYYMmwrQYytoTA75_neXAO9jy5ob-UFuwb0ydJZJBYNJ9qWqyLsuj6NHbDo49CTlav1pxMp0BZFTU0C3W0zj6zC75vuqvdSmGOXjvTC7QuRx6L7KHOFlEFmjWiXiGCz13ybTcxsA54KnKnAj3Ht3vJneHkKwezbdXYLl26M7Kjg0Taug-tZl30CzSlNf-LkaNZQdh5OsKg0758qZcPr_EDlTaYuCzlrCrps273JOHghjC',
     alt: 'The outdoor Garden Bar at twilight with fairy lights',
+    caption: 'Garden Cocktail Lounge',
   },
 ]
 
@@ -106,6 +109,14 @@ const dummyContact = { whatsapp: '2348000000000', phone: '+23412345678' }
 // doesn't have data for, and falls back to the fields above where it can):
 // gallery / photoCount, fullAddress, closes, access, spend, about, occasions,
 // dishes, amenities, pairWith / pairMins, whatsapp, phone
+//
+// More optional fields (desktop venue detail page; every one can be left out):
+// hours      : [{ days: 'Tuesday – Sunday', time: '12:00 PM – 11:30 PM', closed?: true }]
+// website    : full link, e.g. 'https://alara.com/nok'
+// instagram  : handle without the @, e.g. 'nokbyalara'
+// charges    : extra bill charges, e.g. '7.5% VAT + 10% Service'
+// verifiedOn : when the listing was last checked, e.g. 'Oct 2024'
+// gallery[].caption : short label shown on the photo (desktop photo grid)
 export const venues = [
   {
     id: 'the-house-lagos',
@@ -428,6 +439,15 @@ export const venues = [
     // placeholder contact details: replace with the venue's real numbers
     whatsapp: '2348000000000',
     phone: '+23412345678',
+    // optional extras (placeholder values: replace with the venue's real details)
+    hours: [
+      { days: 'Tuesday – Sunday', time: '12:00 PM – 11:30 PM' },
+      { days: 'Mondays', time: 'Closed for culinary prep', closed: true },
+    ],
+    website: 'https://alara.com/nok',
+    instagram: 'nokbyalara',
+    charges: '7.5% VAT + 10% Service',
+    verifiedOn: 'Oct 2024',
   },
   {
     id: 'shiro-lagos',
