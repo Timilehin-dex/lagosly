@@ -46,7 +46,7 @@ function AddStopPanel({ suggestions, onAddVenue, onAddCustom }) {
       </div>
 
       {suggestions.length > 0 ? (
-        <div className="mb-3 grid grid-cols-2 gap-2">
+        <div className="mb-3 grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
           {suggestions.map((venue) => (
             <button
               type="button"

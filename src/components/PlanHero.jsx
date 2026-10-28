@@ -36,9 +36,9 @@ function PlanHero({ plan, now, onOpen, onShare }) {
   const extraGuests = Math.max((plan.guests ?? 0) - 3, 0)
 
   return (
-    <article className="relative mb-6 overflow-hidden rounded-2xl bg-white shadow-[0_12px_32px_rgba(14,28,49,0.08)]">
+    <article className="relative mb-6 overflow-hidden rounded-2xl bg-white shadow-[0_12px_32px_rgba(14,28,49,0.08)] md:mb-8 md:rounded-3xl lg:grid lg:grid-cols-12">
       {/* Header */}
-      <div className="bg-linear-to-br from-[#F0F3FF] to-[#DFE8FF]/40 p-4">
+      <div className="bg-linear-to-br from-[#F0F3FF] to-[#DFE8FF]/40 p-4 md:p-6 lg:col-span-5 lg:flex lg:flex-col lg:justify-center lg:p-10">
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1 rounded-full bg-[#008073]/15 px-2.5 py-0.5 text-xs font-semibold tracking-[0.36px] text-[#00655B]">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#00655B]" />
@@ -51,7 +51,7 @@ function PlanHero({ plan, now, onOpen, onShare }) {
             </span>
           )}
         </div>
-        <h2 className="font-jakarta text-[22px] font-extrabold leading-7 tracking-[-0.33px]">
+        <h2 className="font-jakarta text-[22px] font-extrabold leading-7 tracking-[-0.33px] md:text-3xl md:leading-9 lg:text-4xl lg:leading-11">
           {plan.title}
         </h2>
         <p className="mt-1 flex items-center gap-1 text-[13px] text-[#434654]">
@@ -60,7 +60,7 @@ function PlanHero({ plan, now, onOpen, onShare }) {
         </p>
       </div>
 
-      <div className="p-4">
+      <div className="p-4 md:p-6 lg:col-span-7 lg:p-8">
         {/* Stops trail */}
         <div className="mb-2 flex items-center justify-between gap-2">
           <span className="text-xs font-semibold tracking-[0.36px]">Route Flow &amp; Timeline</span>

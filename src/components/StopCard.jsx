@@ -30,9 +30,9 @@ function StopCard({ stop, index, count, guests, editing, onMove, onRemove, onCha
         {index + 1}
       </div>
 
-      <article className="rounded-2xl bg-white p-4 shadow-sm">
+      <article className="rounded-2xl bg-white p-4 shadow-sm transition-shadow hover:shadow-md md:p-5">
         <div className="flex items-start gap-3">
-          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[#E8EEFF]">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[#E8EEFF] md:h-28 md:w-36">
             <SmartImage src={stop.image} alt={stop.name} className="h-full w-full object-cover" />
             {stop.time && (
               <span className="absolute bottom-1 left-1 rounded bg-white/90 px-1.5 py-0.5 text-[9px] font-bold text-[#0E1C31] backdrop-blur-xs">

@@ -1,4 +1,5 @@
 import { MdOutlineArchive, MdOutlineUnarchive, MdOutlineDeleteOutline } from 'react-icons/md'
+import SmartImage from './SmartImage'
 import {
   draftProgress,
   formatDay,
@@ -42,7 +43,13 @@ function PlanCard({ plan, status, now, onOpen, onArchive, onRestore, onDelete })
     : `· ${plan.guests ?? 0} ${plan.guests === 1 ? 'Guest' : 'Guests'}`
 
   return (
-    <article className="flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-[0_6px_20px_rgba(14,28,49,0.04)] transition hover:shadow-md">
+    <article className="flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-[0_6px_20px_rgba(14,28,49,0.04)] transition hover:shadow-md md:p-5">
+      {/* cover photo from the first stop (tablet and up) */}
+      {stops[0]?.image && (
+        <div className="relative hidden h-40 overflow-hidden rounded-xl bg-[#E8EEFF] md:block">
+          <SmartImage src={stops[0].image} alt="" className="h-full w-full object-cover" />
+        </div>
+      )}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="mb-1 flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -74,7 +81,7 @@ function PlanCard({ plan, status, now, onOpen, onArchive, onRestore, onDelete })
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-2 pt-1">
+      <div className="mt-auto flex items-center justify-between gap-2 pt-1">
         <div className="min-w-0">
           <span className="font-jakarta text-xl font-extrabold tracking-[-0.2px]">
             {formatNaira(planTotal(plan))}
